@@ -1,0 +1,35 @@
+#:kivy 2.1.0
+WindowManager:
+    LoginWindow:
+    SecondWindow:
+
+<Button>:
+    size_hint: 0.3, 0.1
+<LoginWindow>:
+    name: "login"
+    GridLayout:
+        cols: 1
+        GridLayout:
+            cols: 2
+            Label:
+                text: "Password: "
+            TextInput:
+                id: pwd
+                multiline: False
+                password: True
+        Button:
+            text: "Login"
+            on_release: 
+                app.root.current = "second" if pwd.text == 'ruth' else "login"
+                app.root.transition.direction = "left"
+
+
+<SecondWindow>:
+    name: "second"
+    Button:
+        pos_hint: {"top": 0.5, "x": 0.3}
+        text: "Go Back"
+        on_release: 
+            app.root.current = "login"
+            root.manager.transition.direction ="right"
+
